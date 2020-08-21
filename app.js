@@ -4,9 +4,9 @@ var mongoose = require('mongoose');
 var config = require('./config')
 var apiController = require('./controllers/apiController')
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
-app.use('/assets', express.static(__dirname + '/public'));
+app.use('/', express.static(__dirname + '/public/public/'));
 mongoose.connect(config.getDbConnectionString())
 
 apiController(app)
