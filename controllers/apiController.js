@@ -22,8 +22,11 @@ module.exports = function(app){
     });
 
     app.post('/api/todo', function(req, res) {
+        console.log(req.body)
+        console.log(req.body.todo)
+        console.log(req.body.isDone)
         if(req.body.id){
-            Todo.findByIdAndUpdate(req.bondy.id, {
+            Todo.findByIdAndUpdate(req.body.id, {
                 todo: req.body.todo,
                 isDone: req.body.isDone,
             }, function(err, todo){
@@ -34,7 +37,7 @@ module.exports = function(app){
         else{
             var newTodo = Todo({
                 username: 'test',
-                todo: req.bnody.todo,
+                todo: req.body.todo,
                 isDone: req.body.isDone
             });
             newTodo.save(function(err) {
