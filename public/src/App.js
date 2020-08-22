@@ -58,7 +58,7 @@ function App() {
           </Accordion.Collapse>
         </Card>
       </Accordion>
-      {!isLoading ? todos.map(todo => <TodoItem key={todo._id} todo={todo.todo} isDone={todo.isDone} />) : "loading"}
+      {!isLoading ? todos.map(todo => <TodoItem key={todo._id} todo={todo.todo} isDone={todo.isDone} id={todo._id}/>) : "loading"}
     </div>
   );
 }
