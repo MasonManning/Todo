@@ -6,8 +6,6 @@ import Col from 'react-bootstrap/Col'
 
 function TodoItem(props) {
     const handleDelete = (event) => {
-        console.log("delete")
-        console.log(props)
         fetch('/api/todo/', {
             method: 'delete',
             headers: {
@@ -29,7 +27,6 @@ function TodoItem(props) {
                 <Col md="2">
                     <input type="checkbox" defaultChecked={props.isDone} />
                 </Col>
-                {/* <Col md={{span:1, offset:2}}> */}
                 <Col md={{span:1, offset:2}}>
                     <Button  onClick={handleDelete} variant='danger'>X</Button>
                 </Col>

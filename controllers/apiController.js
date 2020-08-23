@@ -44,14 +44,19 @@ module.exports = function (app) {
                 console.log("New ToDO((((((((((((((((((((((((((((((((((((((((((((((((((((((((((")
                 console.log(newTodo)
                 if (err) throw err;
-                res.send('success');
+                res.status(200).json({id: newTodo._id});
+                // res.send('success');
                 // res.send('Success');
-                // res.status(200).json({status: newTodo._id});
                 // res.json({id: newTodo._id})
                 // res.status(200);
 
                 // res.setHeader('Content-Type', 'application/json');
                 // res.end(JSON.stringify({ a: 1 }));
+
+                // res.send(JSON.stringify({
+                //     test: "test string",
+                //     id: "This is an ID!!"
+                // }))
             });
         }
     })

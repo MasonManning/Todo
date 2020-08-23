@@ -15,7 +15,9 @@ function App() {
   const [newTodo, setNewTodo] = useState('')
   useEffect(() => {
     fetch('/api/todo')
-      .then(res => res.json())
+      .then(res => {
+        return res.json()
+    })
       .then(data => {
         setIsLoading(false)
         setTodos(data)
@@ -34,8 +36,8 @@ function App() {
         isDone: 'false'
       })
     })
-      // .then(res => res.status === 200 ? console.log(res) : console.log("Fail"))
-      .then(res => res.status === 200 ? setTodos(ps => ([...ps, { todo: newTodo, isDone: false, id: res.id }])) : console.log("Fail"))
+      .then(res => res.json())
+      .then(data => data.id ? setTodos(ps => ([...ps, { todo: newTodo, isDone: false, _id: data.id}])) : console.log("Fail"))
     event.preventDefault()
   }
   const handleChange = (event) => {
