@@ -1,7 +1,10 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
-function TodoItem(props){
+function TodoItem(props) {
     const handleDelete = (event) => {
         console.log("delete")
         console.log(props)
@@ -15,17 +18,23 @@ function TodoItem(props){
                 id: props.id
             })
         })
-        // .then(data => data.status === 200 ? )
+            .then(data => data.status === 200 ? props.deleteTodo(props.id) : '')
     }
-    return(
-        <div>
-            <span>
-            <h2> Todo Item</h2>
-            <Button onClick={handleDelete} variant='danger'>X</Button>
-            </span>
-            <h3>{props.todo}</h3>
-            <h3>isDone: {props.isDone ? "Finished" : "In Progress"}</h3>
-        </div>
+    return (
+        <Alert variant='primary' >
+            <Row>
+                <Col md={{span:7}}>
+                    <h3>{props.todo}</h3>
+                </Col>
+                <Col md="2">
+                    <input type="checkbox" defaultChecked={props.isDone} />
+                </Col>
+                {/* <Col md={{span:1, offset:2}}> */}
+                <Col md={{span:1, offset:2}}>
+                    <Button  onClick={handleDelete} variant='danger'>X</Button>
+                </Col>
+            </Row>
+        </Alert>
     )
 
 }
