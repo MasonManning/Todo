@@ -1,10 +1,14 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 function TodoItem(props) {
+    const [editFlag, setEditFlag] = useState(false)
+    const [editTodo, setEditTodo] = useState(props.todo)
+    const HIDE = {display: "none"} 
+    const SHOW = {display: "block"} 
     const handleDelete = (event) => {
         fetch('/api/todo/', {
             method: 'delete',
@@ -32,13 +36,27 @@ function TodoItem(props) {
             })
         })
     }
+    const handleEdit = (event) => {
+        console.log(editFlag)
+        setEditFlag(ps => !ps)
+    }
+    const handleEditChange = (event) => {
+        console.log(editTodo)
+
+    }
     return (
         <Alert variant='primary' >
             <Row>
-                <Col md={{ span: 7 }}>
+                <Col md={{span:1}}>
+                    <Button onClick={handleEdit}>Edit</Button>
+                </Col>
+                <Col md={{ span: 6 }} style={editFlag ? SHOW : HIDE}>
+                    <input type="text" value={editTodo} onChange={handleEditChange}/>
+                </Col>
+                <Col md={{ span: 6 }} style={editFlag ? HIDE : SHOW}>
                     <h3>{props.todo}</h3>
                 </Col>
-                <Col md="2">
+                <Col md="2" >
                     <input type="checkbox" defaultChecked={props.isDone} onChange={handleChange} />
                 </Col>
                 <Col md={{ span: 1, offset: 2 }}>
