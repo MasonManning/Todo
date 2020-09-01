@@ -22,9 +22,6 @@ module.exports = function (app) {
     });
 
     app.post('/api/todo', function (req, res) {
-        console.log(req.body)
-        console.log(req.body.todo)
-        console.log(req.body.isDone)
         if (req.body.id) {
             Todo.findByIdAndUpdate(req.body.id, {
                 todo: req.body.todo,
@@ -41,8 +38,6 @@ module.exports = function (app) {
                 isDone: req.body.isDone
             });
             newTodo.save(function (err) {
-                console.log("New ToDO((((((((((((((((((((((((((((((((((((((((((((((((((((((((((")
-                console.log(newTodo)
                 if (err) throw err;
                 res.status(200).json({id: newTodo._id});
                 // res.send('success');

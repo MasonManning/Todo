@@ -39,12 +39,10 @@ function TodoItem(props) {
         })
     }
     const handleEdit = (event) => {
-        console.log(editFlag)
         setEditFlag(ps => !ps)
         setEditTodo(props.todo)
     }
     const handleEditChange = (event) => {
-        console.log(editTodo)
         setEditTodo(event.target.value)
     }
     const handleSave = (event) => {

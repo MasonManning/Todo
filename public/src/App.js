@@ -22,7 +22,6 @@ function App() {
         setIsLoading(false)
         setTodos(data)
       })
-    console.log("Use Effect")
   }, [])
   const handleSubmit = (event) => {
     fetch('/api/todo', {
@@ -37,7 +36,7 @@ function App() {
       })
     })
       .then(res => res.json())
-      .then(data => data.id ? setTodos(ps => ([...ps, { todo: newTodo, isDone: false, _id: data.id}])) : console.log("Fail"))
+      .then(data => data.id ? setTodos(ps => ([...ps, { todo: newTodo, isDone: false, _id: data.id}])) : '')
     event.preventDefault()
   }
   const handleChange = (event) => {
@@ -47,10 +46,7 @@ function App() {
     setTodos(ps => ([...ps, todo]))
   }
   const deleteTodo = (id) => {
-    console.log("Deleted Item Id is: " + id)
-    console.log(todos)
     setTodos(ps => (ps.filter(i => i._id !== id)))
-    console.log(todos)
   }
   return (
     <div className="App">
